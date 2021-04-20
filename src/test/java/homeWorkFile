@@ -1,0 +1,31 @@
+
+1) Дописать css selectors для сайта(https://rozetka.com.ua/mobile-phones/c80003/):
+-  Картинку для “Мобильный телефон Samsung Galaxy A51 6/128GB Blue (SM-A515FZBWSEK)”
+[data-goods-id="173969447"] img
+- Топ продаж ждя “Мобильный телефон Samsung Galaxy A51 6/128GB Blue (SM-A515FZBWSEK)”
+[data-goods-id="168814171"] .goods-tile__label.promo-label
+- Цену для “Мобильный телефон Samsung Galaxy A51 6/128GB Blue (SM-A515FZBWSEK)”
+[data-goods-id="168814171"] .goods-tile__price-value
+
+
+2) Написать xpath selectors:
+
+1)Зайти на сайт https://rozetka.com.ua/mobile-phones/c80003/
+2)Найти следующие элементы:
+- Элемент “Я ищу”
+///input[@name="search"]
+- Mобильные телефоны
+//*[@class="catalog-heading"]
+- Dropbox “по рейтингу”
+    //*[1][name()="option"]
+-  Все элементы, у которых есть “Акция”
+ //span[contains(text(),"Акция")]
+- Элемент с текстом “Мобильный телефон Samsung Galaxy A51 6/128GB Blue (SM-A515FZBWSEK)”
+ //span[contains(text(),"Мобильный телефон Samsung Galaxy A71 6/128GB Black (SM-A715FZKUSEK)")]
+-  Картинку для “Мобильный телефон Samsung Galaxy A51 6/128GB Blue (SM-A515FZBWSEK)”
+ //*[@title="Мобильный телефон Samsung Galaxy A71 6/128GB Black (SM-A715FZKUSEK)"]
+- Топ продаж ждя “Мобильный телефон Samsung Galaxy A51 6/128GB Blue (SM-A515FZBWSEK)”
+//div[@data-goods-id="168814171"]/span[contains(text(),"Топ продаж")]
+- Цену для “Мобильный телефон Samsung Galaxy A51 6/128GB Blue (SM-A515FZBWSEK)”
+//div[@data-goods-id="168814171"]//span[@class = "goods-tile__price-value"]
+
