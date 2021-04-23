@@ -8,17 +8,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.concurrent.TimeUnit;
+
 
 public class HWL3Case5 {
     WebDriver driver;
-
     @BeforeEach
     public void before() {
         System.setProperty("webdriver.chrome.driver", "src/test/resourses/chromedriver");
-
         driver = new ChromeDriver();
-
     }
 
     @AfterEach
@@ -27,28 +24,36 @@ public class HWL3Case5 {
     }
 
     @Test
-    public void menuButtonLogic()  {
+    public void menuButtonLogic() throws InterruptedException {
         driver.get("https://www.yellowtailwine.com");
         //precondition
+        //check checkbox
         WebElement checkbox = driver.findElement(By.cssSelector("[for=\"confirm\"]"));
         checkbox.click();
+        //choose europe
         Select select = new Select(driver.findElement(By.cssSelector(".agegate-selector-options")));
         select.selectByVisibleText("Europe");
+        // Welcome button click
         WebElement welcomeButton = driver.findElement(By.cssSelector("[value=\"Welcome\"]"));
         welcomeButton.click();
-        Assertions.assertTrue(driver.getCurrentUrl().contains("https://www.yellowtailwine.com/"));
+        // check that we ere on the main page
+        WebElement mainpage = driver.findElement(By.cssSelector(".large-mobile"));
+        Assertions.assertTrue(mainpage.isDisplayed());
 
 
         // Click on Menu button
         WebElement menuButton = driver.findElement(By.cssSelector(".fa.fa-bars"));
         menuButton.click();
+       Thread.sleep(2000);
 
         //Click on [yellow tail]
-       WebElement logo = driver.findElement(By.cssSelector(".yt-logo"));
+        WebElement logo = driver.findElement(By.cssSelector("[class=\"yt-logo\"] img[src*=\"logo-yellowtail-white.svg\"]"));
         logo.click();
+        Thread.sleep(2000);
 
         //Verify that Menu button is visible
-      Assertions.assertTrue(menuButton.isDisplayed());
+        WebElement menuButton1 = driver.findElement(By.cssSelector(".fa.fa-bars"));
+      Assertions.assertTrue(menuButton1.isDisplayed());
 
 
     }

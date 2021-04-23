@@ -3,12 +3,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class HWL3Case4 {
+public class HWL4Case6 {
     WebDriver driver;
 
     @BeforeEach
@@ -23,7 +24,7 @@ public class HWL3Case4 {
     }
 
     @Test
-    public void menuButtonLogic() throws InterruptedException {
+    public void requirenmentElementsDisplayedOnMainPage() throws InterruptedException {
         driver.get("https://www.yellowtailwine.com");
         //precondition
         //check checkbox
@@ -39,40 +40,22 @@ public class HWL3Case4 {
         WebElement mainpage = driver.findElement(By.cssSelector(".large-mobile"));
         Assertions.assertTrue(mainpage.isDisplayed());
 
-        //2. Click on Menu button
+        //Click on Menu button
         WebElement menuButton = driver.findElement(By.cssSelector(".fa.fa-bars"));
         menuButton.click();
         Thread.sleep(2000);
 
-//Verify that header with all needed links is appeared
-        WebElement wineLink = driver.findElement(By.cssSelector("[href*=\"wines\"]"));
-        Assertions.assertTrue(wineLink.isDisplayed());
+        //Click on Globe icon
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("document.querySelector('.fa.fa-globe.fa-lg',':before').click();");
 
-        WebElement whereToBue = driver.findElement(By.cssSelector("[href*=\"stores\"]"));
-        Assertions.assertTrue(whereToBue.isDisplayed());
+        //Select Ch
+        WebElement chinaButton = driver.findElement(By.cssSelector("[data-key=\"CN\"]"));
+        chinaButton.click();
 
-        WebElement coctails = driver.findElement(By.cssSelector("[href*=\"cocktails\"]"));
-        Assertions.assertTrue(coctails.isDisplayed());
+       // Verify that language is changed
 
-        WebElement ourStory = driver.findElement(By.cssSelector("[href*=\"our-story\"]"));
-        Assertions.assertTrue(ourStory.isDisplayed());
 
-        WebElement faqs = driver.findElement(By.cssSelector("[href*=\"faqs\"]"));
-        Assertions.assertTrue(faqs.isDisplayed());
-
-        WebElement contact = driver.findElement(By.cssSelector("[href*=\"contact\"]"));
-        Assertions.assertTrue(contact.isDisplayed());
-
-        //  4. Click on [yellow tail]
-        WebElement logo = driver.findElement(By.cssSelector("[class=\"yt-logo\"] img[src*=\"logo-yellowtail-white.svg\"]"));
-        logo.click();
-        //  5. Verify that Menu button is visible
-        WebElement menuButton1 = driver.findElement(By.cssSelector(".fa.fa-bars"));
-        Assertions.assertTrue(menuButton1.isDisplayed());
 
     }
 }
-
-
-
-

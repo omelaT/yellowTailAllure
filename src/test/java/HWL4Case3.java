@@ -3,21 +3,17 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.List;
-
-public class HWL3Case8 {
+public class HWL4Case3 {
     WebDriver driver;
 
     @BeforeEach
     public void before() {
         System.setProperty("webdriver.chrome.driver", "src/test/resourses/chromedriver");
-
         driver = new ChromeDriver();
     }
 
@@ -25,15 +21,9 @@ public class HWL3Case8 {
     public void after() {
         driver.quit();
     }
-    /*
-
-2. Enter valid data in “Your location” field
-3. Click on Search button
-4. Verify that the results of search are displayed
-     */
 
     @Test
-    public void whereToBy() throws InterruptedException {
+    public void requirenmentElementsDisplayedOnMainPage() throws InterruptedException {
         driver.get("https://www.yellowtailwine.com");
         //precondition
         //check checkbox
@@ -49,30 +39,33 @@ public class HWL3Case8 {
         WebElement mainpage = driver.findElement(By.cssSelector(".large-mobile"));
         Assertions.assertTrue(mainpage.isDisplayed());
 
-        // Click on Menu button
+        //1. Navigate to main page - done
+
+        //2. Verify that the following elements are displayed:
+        //- menu button
         WebElement menuButton = driver.findElement(By.cssSelector(".fa.fa-bars"));
-        menuButton.click();
-        Thread.sleep(2000);
+        Assertions.assertTrue(menuButton.isDisplayed());
 
-        //where to by page
-       WebElement whereToBymenu = driver.findElement(By.cssSelector("[href*=\"stores\"]"));
-        whereToBymenu.click();
-        Thread.sleep(2000);
+        //- WELCOME TO THE WORLD OF [Yellow tail]
+        WebElement titleOnMainPage = driver.findElement(By.cssSelector("[class = \"content animation-screen -one\"] h2"));
+        Assertions.assertTrue(titleOnMainPage.isDisplayed());
 
-      //  Enter valid data in “Your location” field
+        //- We are passionate about creating great tasting, quality wines for everyone to
+        WebElement passionateText = driver.findElement(By.cssSelector("[class=\"content animation-screen -one\"] p"));
+        Assertions.assertTrue(passionateText.isDisplayed());
 
-       WebElement locationField = driver.findElement(By.cssSelector("[id=\"locationName\"]"));
-        locationField.sendKeys("Kiev Street, Merrylands NSW, Australia");
-        locationField.sendKeys(Keys.ENTER);
+        //enjoy
+        WebElement enjoyText = driver.findElement(By.cssSelector("[class=\"content animation-screen -one\"] p"));
+        Assertions.assertTrue(enjoyText.isDisplayed());
+
+        //- find your wine button
+        WebElement findYourWineButton = driver.findElement(By.cssSelector("[class=\"content animation-screen -one\"]> a"));
+        Assertions.assertTrue(findYourWineButton.isDisplayed());
+
+        //- footer
+        WebElement footer = driver.findElement(By.cssSelector(".primary-footer"));
+        Assertions.assertTrue(footer.isDisplayed());
 
 
-      //  3. Click on Search button
-        WebElement searchButton = driver.findElement(By.cssSelector(".search-submit"));
-        searchButton.click();
-        Thread.sleep(2000);
-
-      //  4. Verify that the results of search are displayed
-        WebElement searchResult = driver.findElement(By.cssSelector("[class=\"tile\"]:first-child"));
-        Assertions.assertTrue(searchResult.isDisplayed());
-
-}}
+    }
+}
