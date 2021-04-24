@@ -3,20 +3,20 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
+public class HWL4Case9 {
 
-public class HWL3Case8 {
+
     WebDriver driver;
 
     @BeforeEach
     public void before() {
         System.setProperty("webdriver.chrome.driver", "src/test/resourses/chromedriver");
-
         driver = new ChromeDriver();
     }
 
@@ -24,15 +24,9 @@ public class HWL3Case8 {
     public void after() {
         driver.quit();
     }
-    /*
-
-2. Enter valid data in “Your location” field
-3. Click on Search button
-4. Verify that the results of search are displayed
-     */
 
     @Test
-    public void whereToBy() throws InterruptedException {
+    public void selectOneWine() throws InterruptedException {
         driver.get("https://www.yellowtailwine.com");
         //precondition
         //check checkbox
@@ -48,30 +42,34 @@ public class HWL3Case8 {
         WebElement mainpage = driver.findElement(By.cssSelector(".large-mobile"));
         Assertions.assertTrue(mainpage.isDisplayed());
 
-        // Click on Menu button
+        //Click on Menu button
         WebElement menuButton = driver.findElement(By.cssSelector(".fa.fa-bars"));
         menuButton.click();
         Thread.sleep(2000);
 
-        //where to by page
-       WebElement whereToBymenu = driver.findElement(By.cssSelector("[href*=\"stores\"]"));
-        whereToBymenu.click();
+        // Navigate to “Cocktails” page
+        WebElement coctails = driver.findElement(By.cssSelector("[href*=\"cocktails\"]"));
+        coctails.click();
         Thread.sleep(2000);
 
-      //  Enter valid data in “Your location” field
+        //  Select “Red wine cocktails”
+        //1 click toggle .toggle
+        WebElement toggle = driver.findElement(By.cssSelector(".toggle"));
+        toggle.click();
+        //[data-value="red"] dropdown click
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("document.querySelector('[data-value=\"red\"]',':before').click();");
+        Thread.sleep(3000);
+        //close dropdown
+        WebElement toggle1 = driver.findElement(By.cssSelector(".toggle"));
+        toggle1.click();
+        Thread.sleep(1000);
 
-       WebElement locationField = driver.findElement(By.cssSelector("[id=\"locationName\"]"));
-        locationField.sendKeys("Kiev Street, Merrylands NSW, Australia");
-        locationField.sendKeys(Keys.ENTER);
+        //Verify that 7 recipes are displayed
 
+        int count = driver.findElements(By.cssSelector("[class=\"tile recipe-tile\"]")).size();
+        System.out.println(count);
+        Assertions.assertEquals(7,count);
+    }
 
-      //  3. Click on Search button
-        WebElement searchButton = driver.findElement(By.cssSelector(".search-submit"));
-        searchButton.click();
-        Thread.sleep(2000);
-
-      //  4. Verify that the results of search are displayed
-        WebElement searchResult = driver.findElement(By.cssSelector("[class=\"tile\"]:first-child"));
-        Assertions.assertTrue(searchResult.isDisplayed());
-
-}}
+}

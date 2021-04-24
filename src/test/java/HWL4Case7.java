@@ -7,15 +7,20 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
 
-public class HWL4Case6 {
+import org.openqa.selenium.support.ui.Select;
+import java.util.Set;
+
+public class HWL4Case7 {
+
     WebDriver driver;
 
     @BeforeEach
     public void before() {
         System.setProperty("webdriver.chrome.driver", "src/test/resourses/chromedriver");
         driver = new ChromeDriver();
+        // получаем набор дескрипторов текущих открытых окон
+
     }
 
     @AfterEach
@@ -24,8 +29,9 @@ public class HWL4Case6 {
     }
 
     @Test
-    public void requirenmentElementsDisplayedOnMainPage() throws InterruptedException {
+    public void mainPageGlobalNavLogic() throws InterruptedException {
         driver.get("https://www.yellowtailwine.com");
+        Set<String> oldWindowsSet = driver.getWindowHandles();
         //precondition
         //check checkbox
         WebElement checkbox = driver.findElement(By.cssSelector("[for=\"confirm\"]"));
@@ -52,11 +58,28 @@ public class HWL4Case6 {
         //Select China
         WebElement chinaButton = driver.findElement(By.cssSelector("[data-key=\"CN\"]"));
         chinaButton.click();
+        Thread.sleep(10000);
 
-        // Verify that language is changed
-        //- find your wine button
-        WebElement findYourWineButton = driver.findElement(By.cssSelector("[class=\"sgg-comp-button-inner\"]"));
-        Assertions.assertTrue(findYourWineButton.getText().contains("发现适合你的酒"));
+
+        //. Click on icon ( in white square on screenshot)
+        JavascriptExecutor js1 = (JavascriptExecutor) driver;
+        js1.executeScript("document.querySelector('.fa.fa-weibo',':before').click();");
+        Thread.sleep(11000);
+
+        //Verify that “https://www.weibo.com/yellowtailChina” site is open in new tab
+// получаем новый набор дескрипторов, включающий уже и новое окно
+        Set<String> newWindowsSet = driver.getWindowHandles();
+
+// получаем дескриптор нового окна
+        newWindowsSet.removeAll(oldWindowsSet);
+        String newWindowHandle = newWindowsSet.iterator().next();
+
+        driver.switchTo().window(newWindowHandle);
+        System.out.println("New window title: " + driver.getTitle());
+
+        Assertions.assertTrue(driver.getCurrentUrl().contains("yellowtailChina"));
+        driver.close();
+
 
     }
 }
