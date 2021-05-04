@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.time.Duration;
+
 public class HWL3Case1 {
     WebDriver driver;
 
@@ -15,6 +17,7 @@ public class HWL3Case1 {
         System.setProperty("webdriver.chrome.driver", "src/test/resourses/chromedriver");
         driver = new ChromeDriver();
         driver.get("https://www.yellowtailwine.com");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
     @AfterEach
@@ -23,28 +26,21 @@ public class HWL3Case1 {
     }
 
     @Test
-    public void verifyLegalTextIsdisplayed() {
+    public void verifyElementsOnWelcomePageIsdisplayed() {
 
         //Verify that “I am of legal drinking age in” is displayed
           WebElement text = driver.findElement(By.cssSelector("[for=\"confirm\"]"));
           Assertions.assertTrue(text.getText().contains("I am of legal drinking age in"));
-    }
-    @Test
-    public void verifyCheckboxIsdisplayed() {
         // Verify that checkbox before “I am of legal drinking age in” is displayed
 
         WebElement checkbox = driver.findElement(By.cssSelector("[for=\"confirm\"]"));
         Assertions.assertTrue(checkbox.isDisplayed());
-    }
-    @Test
-    public void verifyDropdownIsdisplayed() {
+
         //Verify that dropdown with Select is displayed
 
            WebElement select = driver.findElement(By.cssSelector(".agegate-selector-options"));
            Assertions.assertTrue(select.isDisplayed());
-    }
-    @Test
-    public void verifyWelcomeIsDisplayed() {
+
         //Verify that “Welcome” button is displayed and is inactive
 
        WebElement welcomeButton = driver.findElement(By.cssSelector("[value=\"Welcome\"]"));
