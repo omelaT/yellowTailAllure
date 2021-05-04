@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import java.time.Duration;
 
 
 public class HWL3Case5 {
@@ -16,6 +17,7 @@ public class HWL3Case5 {
     public void before() {
         System.setProperty("webdriver.chrome.driver", "src/test/resourses/chromedriver");
         driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @AfterEach
@@ -26,34 +28,23 @@ public class HWL3Case5 {
     @Test
     public void menuButtonLogic() throws InterruptedException {
         driver.get("https://www.yellowtailwine.com");
-        //precondition
-        //check checkbox
-        WebElement checkbox = driver.findElement(By.cssSelector("[for=\"confirm\"]"));
-        checkbox.click();
-        //choose europe
-        Select select = new Select(driver.findElement(By.cssSelector(".agegate-selector-options")));
-        select.selectByVisibleText("Europe");
-        // Welcome button click
-        WebElement welcomeButton = driver.findElement(By.cssSelector("[value=\"Welcome\"]"));
-        welcomeButton.click();
-        // check that we ere on the main page
-        WebElement mainpage = driver.findElement(By.cssSelector(".large-mobile"));
-        Assertions.assertTrue(mainpage.isDisplayed());
+        WelcomePage welcomePage = new WelcomePage(driver);
 
+        //precondition
+        welcomePage.checkboxClickEuropeSelectWelcomeBttonClick();
+
+        MainPage mainPage = new MainPage(driver);
+        Assertions.assertTrue(mainPage.verifyThisIsMainPage());
 
         // Click on Menu button
-        WebElement menuButton = driver.findElement(By.cssSelector(".fa.fa-bars"));
-        menuButton.click();
-       Thread.sleep(2000);
+        mainPage.clickOnMenuButtonOnMainPage();
 
         //Click on [yellow tail]
-        WebElement logo = driver.findElement(By.cssSelector("[class=\"yt-logo\"] img[src*=\"logo-yellowtail-white.svg\"]"));
-        logo.click();
-        Thread.sleep(2000);
+       mainPage.clickOnYellowTailOnMainPage();
 
         //Verify that Menu button is visible
-        WebElement menuButton1 = driver.findElement(By.cssSelector(".fa.fa-bars"));
-      Assertions.assertTrue(menuButton1.isDisplayed());
+      Assertions.assertTrue(mainPage.menuButtonIsDisplayedOnMainPage());
+        System.out.println("success");
 
 
     }

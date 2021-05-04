@@ -9,6 +9,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class HWL3Case1 {
     WebDriver driver;
 
@@ -27,25 +29,13 @@ public class HWL3Case1 {
 
     @Test
     public void verifyElementsOnWelcomePageIsdisplayed() {
+        WelcomePage welcomePage = new WelcomePage(driver);
 
-        //Verify that “I am of legal drinking age in” is displayed
-          WebElement text = driver.findElement(By.cssSelector("[for=\"confirm\"]"));
-          Assertions.assertTrue(text.getText().contains("I am of legal drinking age in"));
-        // Verify that checkbox before “I am of legal drinking age in” is displayed
-
-        WebElement checkbox = driver.findElement(By.cssSelector("[for=\"confirm\"]"));
-        Assertions.assertTrue(checkbox.isDisplayed());
-
-        //Verify that dropdown with Select is displayed
-
-           WebElement select = driver.findElement(By.cssSelector(".agegate-selector-options"));
-           Assertions.assertTrue(select.isDisplayed());
-
-        //Verify that “Welcome” button is displayed and is inactive
-
-       WebElement welcomeButton = driver.findElement(By.cssSelector("[value=\"Welcome\"]"));
-        Assertions.assertTrue(welcomeButton.isDisplayed());
-        Assertions.assertFalse(welcomeButton.isEnabled());
+        Assertions.assertTrue(welcomePage.legalTextDisplayedOnWelcomePage());
+        Assertions.assertTrue(welcomePage.checkboxTextDisplayedOnWelcomePage());
+        Assertions.assertTrue(welcomePage.selectIsDispalyedOnWelcomePage());
+        Assertions.assertTrue(welcomePage.welcomeButtonIsDispalyedOnWelcomePage());
+        Assertions.assertFalse(welcomePage.welcomeButtonIsInactiveOnWelcomePage());
 
     }
 

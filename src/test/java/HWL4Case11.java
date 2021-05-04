@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import java.time.Duration;
+
 public class HWL4Case11 {
 
     WebDriver driver;
@@ -17,6 +19,7 @@ public class HWL4Case11 {
     public void before() {
         System.setProperty("webdriver.chrome.driver", "src/test/resourses/chromedriver");
         driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
     @AfterEach

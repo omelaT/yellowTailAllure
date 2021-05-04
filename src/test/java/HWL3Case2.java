@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import java.time.Duration;
+
 public class HWL3Case2 {
     WebDriver driver;
 
@@ -16,6 +18,7 @@ public class HWL3Case2 {
         System.setProperty("webdriver.chrome.driver", "src/test/resourses/chromedriver");
         driver = new ChromeDriver();
         driver.get("https://www.yellowtailwine.com");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
     @AfterEach
@@ -25,17 +28,11 @@ public class HWL3Case2 {
     //Welcome page: navigate to main page as European customer
     @Test
     public void navigateAsCustomer() {
-        // Verify that checkbox before “I am of legal drinking age in” is displayed
-//Tick on checkbox
-        WebElement checkbox = driver.findElement(By.cssSelector("[for=\"confirm\"]"));
-        checkbox.click();
-//Select “Europe” from dropbox
-        Select select = new Select(driver.findElement(By.cssSelector(".agegate-selector-options"))) ;
-        select.selectByVisibleText("Europe");
-//Press “Welcome” button
-        WebElement welcomeButton = driver.findElement(By.cssSelector("[value=\"Welcome\"]"));
-        welcomeButton.click();
-//Main page should be displayed
+        WelcomePage welcomePage = new WelcomePage(driver);
+
+        welcomePage.checkboxClickEuropeSelectWelcomeBttonClick();
+
+        MainPage mainPage = new MainPage(driver);
         Assertions.assertTrue(driver.getCurrentUrl().contains("https://www.yellowtailwine.com/"));
 
 

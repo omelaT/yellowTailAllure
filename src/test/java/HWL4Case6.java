@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import java.time.Duration;
+
 public class HWL4Case6 {
     WebDriver driver;
 
@@ -16,6 +18,7 @@ public class HWL4Case6 {
     public void before() {
         System.setProperty("webdriver.chrome.driver", "src/test/resourses/chromedriver");
         driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
     }
 
     @AfterEach
@@ -27,36 +30,26 @@ public class HWL4Case6 {
     public void requirenmentElementsDisplayedOnMainPage() throws InterruptedException {
         driver.get("https://www.yellowtailwine.com");
         //precondition
-        //check checkbox
-        WebElement checkbox = driver.findElement(By.cssSelector("[for=\"confirm\"]"));
-        checkbox.click();
-        //choose europe
-        Select select = new Select(driver.findElement(By.cssSelector(".agegate-selector-options")));
-        select.selectByVisibleText("Europe");
-        // Welcome button click
-        WebElement welcomeButton = driver.findElement(By.cssSelector("[value=\"Welcome\"]"));
-        welcomeButton.click();
-        // check that we ere on the main page
-        WebElement mainpage = driver.findElement(By.cssSelector(".large-mobile"));
-        Assertions.assertTrue(mainpage.isDisplayed());
+        WelcomePage welcomePage = new WelcomePage(driver);
 
-        //Click on Menu button
-        WebElement menuButton = driver.findElement(By.cssSelector(".fa.fa-bars"));
-        menuButton.click();
-        Thread.sleep(2000);
+        welcomePage.checkboxClickEuropeSelectWelcomeBttonClick();
+
+        MainPage mainPage = new MainPage(driver);
+        Assertions.assertTrue(mainPage.verifyThisIsMainPage());
+
+        // Click on Menu button
+        mainPage.clickOnMenuButtonOnMainPage();
 
         //Click on Globe icon
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("document.querySelector('.fa.fa-globe.fa-lg',':before').click();");
+        mainPage.clickOnTheGlobeIcon();
 
         //Select China
-        WebElement chinaButton = driver.findElement(By.cssSelector("[data-key=\"CN\"]"));
-        chinaButton.click();
-
+        mainPage.selectChinaAndClick();
+        System.out.println("success click");
         // Verify that language is changed
         //- find your wine button
-        WebElement findYourWineButton = driver.findElement(By.cssSelector("[class=\"sgg-comp-button-inner\"]"));
-        Assertions.assertTrue(findYourWineButton.getText().contains("发现适合你的酒"));
-
+       // WebElement findYourWineButton = driver.findElement(By.cssSelector("[class=\"sgg-comp-button-inner\"]"));
+        Assertions.assertTrue( mainPage.getChangedLanguageOnFindYourWineButton().contains("发现适合你的酒"));
+        System.out.println("success");
     }
 }

@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import java.time.Duration;
+
 public class HWL3Case4 {
     WebDriver driver;
 
@@ -15,6 +17,7 @@ public class HWL3Case4 {
     public void before() {
         System.setProperty("webdriver.chrome.driver", "src/test/resourses/chromedriver");
         driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @AfterEach
@@ -24,51 +27,40 @@ public class HWL3Case4 {
 
     @Test
     public void menuButtonLogic() throws InterruptedException {
+        WelcomePage welcomePage = new WelcomePage(driver);
         driver.get("https://www.yellowtailwine.com");
-        //precondition
-        //check checkbox
-        WebElement checkbox = driver.findElement(By.cssSelector("[for=\"confirm\"]"));
-        checkbox.click();
-        //choose europe
-        Select select = new Select(driver.findElement(By.cssSelector(".agegate-selector-options")));
-        select.selectByVisibleText("Europe");
-        // Welcome button click
-        WebElement welcomeButton = driver.findElement(By.cssSelector("[value=\"Welcome\"]"));
-        welcomeButton.click();
+        welcomePage.checkboxClickEuropeSelectWelcomeBttonClick();
+
         // check that we ere on the main page
-        WebElement mainpage = driver.findElement(By.cssSelector(".large-mobile"));
-        Assertions.assertTrue(mainpage.isDisplayed());
+        MainPage mainPage = new MainPage(driver);
+        Assertions.assertTrue(mainPage.verifyThisIsMainPage());
+        System.out.println("mainPage");
 
         //2. Click on Menu button
-        WebElement menuButton = driver.findElement(By.cssSelector(".fa.fa-bars"));
-        menuButton.click();
+        mainPage.clickOnMenuButtonOnMainPage();
+        System.out.println("clickonmenubutton");
         Thread.sleep(2000);
 
-//Verify that header with all needed links is appeared
-        WebElement wineLink = driver.findElement(By.cssSelector("[href*=\"wines\"]"));
-        Assertions.assertTrue(wineLink.isDisplayed());
-
-        WebElement whereToBue = driver.findElement(By.cssSelector("[href*=\"stores\"]"));
-        Assertions.assertTrue(whereToBue.isDisplayed());
-
-        WebElement coctails = driver.findElement(By.cssSelector("[href*=\"cocktails\"]"));
-        Assertions.assertTrue(coctails.isDisplayed());
-
-        WebElement ourStory = driver.findElement(By.cssSelector("[href*=\"our-story\"]"));
-        Assertions.assertTrue(ourStory.isDisplayed());
-
-        WebElement faqs = driver.findElement(By.cssSelector("[href*=\"faqs\"]"));
-        Assertions.assertTrue(faqs.isDisplayed());
-
-        WebElement contact = driver.findElement(By.cssSelector("[href*=\"contact\"]"));
-        Assertions.assertTrue(contact.isDisplayed());
+       //Verify that header with all needed links is appeared
+        Assertions.assertTrue(mainPage.wineLinkDisplayedOnMainPage());
+        System.out.println("link 1 exists");
+        Assertions.assertTrue(mainPage.storesLinkDisplayedOnMainPage());
+        System.out.println("link 2 exists");
+        Assertions.assertTrue(mainPage.coctailsLinkDisplayedOnMainPage());
+        System.out.println("link 3 exists");
+        Assertions.assertTrue(mainPage.ourStoryLinkDisplayedOnMainPage());
+        System.out.println("link 4 exists");
+        Assertions.assertTrue(mainPage.faqsLinkDisplayedOnMainPage());
+        System.out.println("link 5 exists");
+        Assertions.assertTrue(mainPage.contactLinkDisplayedOnMainPage());
+        System.out.println("links exists");
 
         //  4. Click on [yellow tail]
-        WebElement logo = driver.findElement(By.cssSelector("[class=\"yt-logo\"] img[src*=\"logo-yellowtail-white.svg\"]"));
-        logo.click();
+        mainPage.clickOnLogoOnMainPage();
         //  5. Verify that Menu button is visible
-        WebElement menuButton1 = driver.findElement(By.cssSelector(".fa.fa-bars"));
-        Assertions.assertTrue(menuButton1.isDisplayed());
+        mainPage.menuButtonClickOnMainPage();
+
+        System.out.println("test success");
 
     }
 }
