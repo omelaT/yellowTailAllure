@@ -139,6 +139,20 @@ private WebElement selectChina;
         js1.executeScript("document.querySelector('.fa.fa-weibo',':before').click();");
     }
 
+        @FindBy(css ="[href*=\"stores\"]" )
+        private WebElement whereToBueMenu;
+        public void whereToByMenuClick(){
+            whereToBueMenu.click();
+
+        }
+
+        @FindBy(css = "[href*=\"cocktails\"]")
+        private WebElement coctails;
+    public void clickOnCoctailPagelinkOnMainPage(){
+        coctails.click();
+
+        }
+
 
 
 }

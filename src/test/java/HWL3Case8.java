@@ -20,61 +20,42 @@ public class HWL3Case8 {
         System.setProperty("webdriver.chrome.driver", "src/test/resourses/chromedriver");
 
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @AfterEach
     public void after() {
         driver.quit();
     }
-    /*
-
-2. Enter valid data in “Your location” field
-3. Click on Search button
-4. Verify that the results of search are displayed
-     */
 
     @Test
     public void whereToBy() throws InterruptedException {
         driver.get("https://www.yellowtailwine.com");
-        //precondition
-        //check checkbox
-        WebElement checkbox = driver.findElement(By.cssSelector("[for=\"confirm\"]"));
-        checkbox.click();
-        //choose europe
-        Select select = new Select(driver.findElement(By.cssSelector(".agegate-selector-options")));
-        select.selectByVisibleText("Europe");
-        // Welcome button click
-        WebElement welcomeButton = driver.findElement(By.cssSelector("[value=\"Welcome\"]"));
-        welcomeButton.click();
-        // check that we ere on the main page
-        WebElement mainpage = driver.findElement(By.cssSelector(".large-mobile"));
-        Assertions.assertTrue(mainpage.isDisplayed());
 
+        //precondition
+        WelcomePage welcomePage = new WelcomePage(driver);
+        welcomePage.checkboxClickEuropeSelectWelcomeBttonClick();
+        MainPage mainPage = new MainPage(driver);
+        Assertions.assertTrue(mainPage.verifyThisIsMainPage());
         // Click on Menu button
-        WebElement menuButton = driver.findElement(By.cssSelector(".fa.fa-bars"));
-        menuButton.click();
-        Thread.sleep(2000);
+        mainPage.clickOnMenuButtonOnMainPage();
+
 
         //where to by page
-       WebElement whereToBymenu = driver.findElement(By.cssSelector("[href*=\"stores\"]"));
-        whereToBymenu.click();
-        Thread.sleep(2000);
+        mainPage.whereToByMenuClick();
+        //   Thread.sleep(2000);
+        WhereToBuyPage whereToBuyPage = new WhereToBuyPage(driver);
+        //  Enter valid data in “Your location” field
 
-      //  Enter valid data in “Your location” field
-
-       WebElement locationField = driver.findElement(By.cssSelector("[id=\"locationName\"]"));
-        locationField.sendKeys("Kiev Street, Merrylands NSW, Australia");
-        locationField.sendKeys(Keys.ENTER);
+        whereToBuyPage.locationFieldOnWhereToBuyPage();
 
 
-      //  3. Click on Search button
-        WebElement searchButton = driver.findElement(By.cssSelector(".search-submit"));
-        searchButton.click();
-        Thread.sleep(2000);
+        //  3. Click on Search button
+        whereToBuyPage.clickOnSearchButtonOnWhereToBuyPage();
 
-      //  4. Verify that the results of search are displayed
-        WebElement searchResult = driver.findElement(By.cssSelector("[class=\"tile\"]:first-child"));
-        Assertions.assertTrue(searchResult.isDisplayed());
+        //  4. Verify that the results of search are displayed
 
-}}
+        Assertions.assertTrue(whereToBuyPage.searchResultOnWhereToBuyPage());
+
+    }
+}

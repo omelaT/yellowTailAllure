@@ -20,7 +20,7 @@ public class HWL4Case9 {
     public void before() {
         System.setProperty("webdriver.chrome.driver", "src/test/resourses/chromedriver");
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @AfterEach
@@ -31,48 +31,29 @@ public class HWL4Case9 {
     @Test
     public void selectOneWine() throws InterruptedException {
         driver.get("https://www.yellowtailwine.com");
-        //precondition
-        //check checkbox
-        WebElement checkbox = driver.findElement(By.cssSelector("[for=\"confirm\"]"));
-        checkbox.click();
-        //choose europe
-        Select select = new Select(driver.findElement(By.cssSelector(".agegate-selector-options")));
-        select.selectByVisibleText("Europe");
-        // Welcome button click
-        WebElement welcomeButton = driver.findElement(By.cssSelector("[value=\"Welcome\"]"));
-        welcomeButton.click();
-        // check that we ere on the main page
-        WebElement mainpage = driver.findElement(By.cssSelector(".large-mobile"));
-        Assertions.assertTrue(mainpage.isDisplayed());
 
-        //Click on Menu button
-        WebElement menuButton = driver.findElement(By.cssSelector(".fa.fa-bars"));
-        menuButton.click();
-        Thread.sleep(2000);
+        //precondition
+        WelcomePage welcomePage = new WelcomePage(driver);
+        welcomePage.checkboxClickEuropeSelectWelcomeBttonClick();
+        MainPage mainPage = new MainPage(driver);
+        Assertions.assertTrue(mainPage.verifyThisIsMainPage());
+        // Click on Menu button
+        mainPage.clickOnMenuButtonOnMainPage();
+
+        /////////
 
         // Navigate to “Cocktails” page
-        WebElement coctails = driver.findElement(By.cssSelector("[href*=\"cocktails\"]"));
-        coctails.click();
-        Thread.sleep(2000);
+        mainPage.clickOnCoctailPagelinkOnMainPage();
 
-        //  Select “Red wine cocktails”
-        //1 click toggle .toggle
-        WebElement toggle = driver.findElement(By.cssSelector(".toggle"));
-        toggle.click();
-        //[data-value="red"] dropdown click
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("document.querySelector('[data-value=\"red\"]',':before').click();");
-        Thread.sleep(3000);
+ CoctailPage coctailPage = new CoctailPage(driver);
+
+        coctailPage.clickOnToggleRedOnCoctailPage();
         //close dropdown
-        WebElement toggle1 = driver.findElement(By.cssSelector(".toggle"));
-        toggle1.click();
-        Thread.sleep(1000);
+        coctailPage.closeDropdownOnCoctailPage();
 
         //Verify that 7 recipes are displayed
-
-        int count = driver.findElements(By.cssSelector("[class=\"tile recipe-tile\"]")).size();
-        System.out.println(count);
-        Assertions.assertEquals(7,count);
+        Thread.sleep(2000);
+        Assertions.assertEquals(7,coctailPage.numberOfCoctailsDisplayed());
     }
 
 }
