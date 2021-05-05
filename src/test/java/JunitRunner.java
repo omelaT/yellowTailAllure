@@ -11,10 +11,11 @@ public class JunitRunner {
 
     @BeforeEach
     public void before() {
+        String basicUrl = "https://www.yellowtailwine.com";
 
-        System.setProperty(Constants.PATH_TO_CHROME_DRIVER, Constants.SYSTEM_PROPERTY_CHROME_DRIVER );
+        System.setProperty( Constants.SYSTEM_PROPERTY_CHROME_DRIVER, Constants.PATH_TO_CHROME_DRIVER );
         driver = new ChromeDriver();
-        driver.get(Constants.BASICURL);
+        driver.get(basicUrl);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
