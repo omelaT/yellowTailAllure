@@ -1,30 +1,11 @@
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
+import pages.CoctailIngredientPage;
+import pages.CoctailPage;
+import pages.MainPage;
+import pages.WelcomePage;
 
-import java.time.Duration;
-
-public class HWL4Case10 {
-    WebDriver driver;
-
-    @BeforeEach
-    public void before() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resourses/chromedriver");
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-    }
-
-    @AfterEach
-    public void after() {
-        driver.quit();
-    }
+public class HWL4Case10  extends  JunitRunner{
 
     @Test
     public void navigateToCocktailRecipePage() throws InterruptedException {

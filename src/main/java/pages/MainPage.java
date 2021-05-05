@@ -1,3 +1,5 @@
+package pages;
+
 import org.asynchttpclient.util.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -5,12 +7,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.Set;
 
 public class MainPage {
-    static WebDriver driver;
+    WebDriver driver;
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
@@ -116,7 +121,14 @@ public class MainPage {
         clickOnYellowTail.click();
     }
 
-    public static void clickOnTheGlobeIcon(){
+    //////
+    @FindBy(css = ".fa.fa-globe.fa-lg")
+    private WebElement globeIcon;
+    public boolean globeIconIsVisible(){
+        return globeIcon.isDisplayed();
+    }
+
+    public void clickOnTheGlobeIcon(){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("document.querySelector('.fa.fa-globe.fa-lg',':before').click();");
     }
@@ -152,6 +164,10 @@ private WebElement selectChina;
         coctails.click();
 
         }
+        //ожидания
+    public void waitForGlobeIcon(){
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(globeIcon));
+    }
 
 
 

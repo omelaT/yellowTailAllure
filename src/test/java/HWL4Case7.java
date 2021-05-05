@@ -1,37 +1,20 @@
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import pages.MainPage;
+import pages.WelcomePage;
+import utils.Constants;
 
 
-import java.time.Duration;
 import java.util.Set;
 
 
-public class HWL4Case7 {
+public class HWL4Case7 extends  JunitRunner {
 
-    WebDriver driver;
-
-    @BeforeEach
-    public void before() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resourses/chromedriver");
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-        // получаем набор дескрипторов текущих открытых окон
-
-    }
-
-    @AfterEach
-    public void after() {
-        driver.quit();
-    }
 
     @Test
     public void mainPageGlobalNavLogic() throws InterruptedException {
-        driver.get("https://www.yellowtailwine.com");
+     //   driver.get(Constants.BASICURL);
 
         //precondition
         WelcomePage welcomePage = new WelcomePage(driver);
@@ -41,19 +24,24 @@ public class HWL4Case7 {
         // Click on Menu button
         mainPage.clickOnMenuButtonOnMainPage();
         //Click on Globe icon
-        Thread.sleep(10000);
+     //   Thread.sleep(10000);
+      //  mainPage.globeIconIsVisible();
+        mainPage.waitForGlobeIcon();
+
         mainPage.clickOnTheGlobeIcon();
 
         //Select China
         mainPage.selectChinaAndClick();
         System.out.println("success click");
       Thread.sleep(10000);
-        WeiboComMainPage weiboComMainPage = new WeiboComMainPage(driver);
+       // WeiboComMainPage weiboComMainPage = new WeiboComMainPage(driver);
         //. Click on icon ( in white square on screenshot)
+
         Set<String> oldWindowsSet = driver.getWindowHandles();
        mainPage.clickOnIconAfterChinaSelected();
         System.out.println("success click 2");
         Thread.sleep(21000);
+        WeiboComMainPage weiboComMainPage = new WeiboComMainPage(driver);
 
         //Verify that “https://www.weibo.com/yellowtailChina” site is open in new tab
       //  WeiboComMainPage weiboComMainPage = new WeiboComMainPage(driver);
