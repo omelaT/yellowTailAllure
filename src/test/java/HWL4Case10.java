@@ -1,20 +1,17 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import pages.CoctailIngredientPage;
-import pages.CoctailPage;
-import pages.MainPage;
-import pages.WelcomePage;
+import pages.*;
 
 public class HWL4Case10  extends  JunitRunner{
 
     @Test
     public void navigateToCocktailRecipePage() throws InterruptedException {
-        driver.get("https://www.yellowtailwine.com");
+        DriverProvider.getDriver().get("https://www.yellowtailwine.com");
         //precondition
         //precondition
-        WelcomePage welcomePage = new WelcomePage(driver);
+        WelcomePage welcomePage = new WelcomePage();
         welcomePage.checkboxClickEuropeSelectWelcomeBttonClick();
-        MainPage mainPage = new MainPage(driver);
+        MainPage mainPage = new MainPage();
         Assertions.assertTrue(mainPage.verifyThisIsMainPage());
         // Click on Menu button
         mainPage.clickOnMenuButtonOnMainPage();
@@ -24,10 +21,10 @@ public class HWL4Case10  extends  JunitRunner{
 
         // Navigate to “Cocktails” page
         mainPage.clickOnCoctailPagelinkOnMainPage();
-        CoctailPage coctailPage = new CoctailPage(driver);
+        CoctailPage coctailPage = new CoctailPage();
 
         coctailPage.scroleToRoseAndClickOnItOnCoctailPage();
-        CoctailIngredientPage coctailIngredientPage = new CoctailIngredientPage(driver);
+        CoctailIngredientPage coctailIngredientPage = new CoctailIngredientPage();
 
         coctailIngredientPage.ingridientSectionIsDisplayed();
 

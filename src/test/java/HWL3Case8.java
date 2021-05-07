@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import pages.DriverProvider;
 import pages.MainPage;
 import pages.WelcomePage;
 import pages.WhereToBuyPage;
@@ -10,12 +11,12 @@ public class HWL3Case8  extends  JunitRunner{
 
     @Test
     public void whereToBy() throws InterruptedException {
-        driver.get("https://www.yellowtailwine.com");
+        DriverProvider.getDriver().get("https://www.yellowtailwine.com");
 
         //precondition
-        WelcomePage welcomePage = new WelcomePage(driver);
+        WelcomePage welcomePage = new WelcomePage();
         welcomePage.checkboxClickEuropeSelectWelcomeBttonClick();
-        MainPage mainPage = new MainPage(driver);
+        MainPage mainPage = new MainPage();
         Assertions.assertTrue(mainPage.verifyThisIsMainPage());
         // Click on Menu button
         mainPage.clickOnMenuButtonOnMainPage();
@@ -24,7 +25,7 @@ public class HWL3Case8  extends  JunitRunner{
         //where to by page
         mainPage.whereToByMenuClick();
         //   Thread.sleep(2000);
-        WhereToBuyPage whereToBuyPage = new WhereToBuyPage(driver);
+        WhereToBuyPage whereToBuyPage = new WhereToBuyPage();
         //  Enter valid data in “Your location” field
 
         whereToBuyPage.locationFieldOnWhereToBuyPage();

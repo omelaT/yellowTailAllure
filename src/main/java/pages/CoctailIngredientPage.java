@@ -5,15 +5,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class CoctailIngredientPage {
-    WebDriver driver;
+public class CoctailIngredientPage extends AbstractPage {
 
-    public CoctailIngredientPage (WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver,this);
+    public CoctailIngredientPage () {
+        super();
     }
+
+
+
+
     @FindBy(css ="[class=\"recipe-intro\"]")
     private WebElement ingridientSection;
+
     public  boolean ingridientSectionIsDisplayed(){
         return ingridientSection.isDisplayed();
     }

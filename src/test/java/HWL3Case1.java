@@ -17,7 +17,7 @@ public class HWL3Case1 extends JunitRunner {
     @Test
 
     public void verifyElementsOnWelcomePageIsdisplayed() {
-        WelcomePage welcomePage = new WelcomePage(driver);
+        WelcomePage welcomePage = new WelcomePage();
 
         Assertions.assertTrue(welcomePage.legalTextDisplayedOnWelcomePage());
         Assertions.assertTrue(welcomePage.checkboxTextDisplayedOnWelcomePage());
