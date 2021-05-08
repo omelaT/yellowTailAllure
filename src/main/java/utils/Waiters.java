@@ -12,10 +12,10 @@ public class Waiters {
         return (  new WebDriverWait(DriverProvider.getDriver(), Duration.ofSeconds(22)).
                until(ExpectedConditions.visibilityOf(webElement)));
     }
- /*   public WebElement waitTime(){
+  /*  public static  WebElement waitTime(WebElement webElement){
+return (new WebDriverWait(DriverProvider.getDriver(), Duration.ofSeconds(20)));
 
-       return  (new WebDriverWait(DriverProvider.getDriver(), Duration.ofSeconds(20)));
     }
+*/
 
-  */
 }

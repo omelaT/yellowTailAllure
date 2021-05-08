@@ -16,13 +16,16 @@ public class HWL4Case6 extends JunitRunner{
 
         MainPage mainPage = new MainPage();
         Assertions.assertTrue(mainPage.verifyThisIsMainPage());
-
+        System.out.println("main page");
         // Click on Menu button
         mainPage.clickOnMenuButtonOnMainPage();
+        System.out.println("click on menu btn");
 
         //Click on Globe icon
         mainPage.clickOnTheGlobeIcon();
-
+        System.out.println("click globe btn");
+//Thread.sleep(5000);
+        mainPage.waitForElementChina();
         //Select China
         mainPage.selectChinaAndClick();
         System.out.println("success click");

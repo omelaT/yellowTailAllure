@@ -32,7 +32,6 @@ public class HWL4Case7 extends JunitRunner {
         mainPage.globeIconIsVisible();
 ///////////
         //wait
-
         mainPage.waitForGlobeIcon();
        // mainPage.waitTime();
 
@@ -49,7 +48,7 @@ public class HWL4Case7 extends JunitRunner {
 
         //wait
        // mainPage.waitForIconAfterChinaSelected();
-
+Thread.sleep(10000);
         //click
         Set<String> oldWindowsSet = DriverProvider.getDriver().getWindowHandles();
         mainPage.clickOnRedirectIcon();
