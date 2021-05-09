@@ -7,7 +7,7 @@ public abstract class AbstractPage {
 
     public AbstractPage () {
 
-        PageFactory.initElements(DriverProvider.getDriver(),this);
+        PageFactory.initElements(DriverProvider.INSTANCE.getDriver(),this);
 
     }
   //  public abstract void waitForLoadingElement();

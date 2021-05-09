@@ -12,31 +12,34 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Driver;
 import java.util.Properties;
-
 import static utils.Constants.FILENAME_WITH_PROPERTIES;
 
-
 public class DriverProvider {
-    /*
-     driver  переделывем
+
      public static final DriverProvider INSTANCE = new DriverProvider();
 
       private ThreadLocal<WebDriver> DRIVER = new ThreadLocal<WebDriver>();
 
-      private DriverProvider() {
-      }
+        private DriverProvider() {
+        }
 
-      public WebDriver getDriver() {
-          if (DRIVER.get() == null) {
-              DRIVER.set(createDriverInstance());
-          }
-          return DRIVER.get();
-      }
 
-      private WebDriver createDriverInstance() {
-          return createDriverInstance(BROWSER_TYPE.CHROME);
-      }
-       */
+    public  WebDriver getDriver(){
+        if (DRIVER.get() == null) {
+            String browserType = loadProperties().getProperty("browserType");
+            DRIVER.set(DriverFactory.createDriver(BrowserType.valueOf(browserType)));
+        }
+        return DRIVER.get();
+    }
+    public void removeDriver() {
+        DRIVER.get().quit();
+        DRIVER.remove();
+    }
+    /*
+        private WebDriver createDriverInstance() {
+            return createDriverInstance(BROWSER_TYPE.CHROME);
+        }
+         */
 /*
  /* выносим в фабрику
     public WebDriver createInstance(BROWSER_TYPE browserType) {
@@ -55,9 +58,9 @@ public class DriverProvider {
     }
     */
     //переделываем под фабрику
-    static WebDriver driver;
+  //  static WebDriver driver;
 
-
+/*
     public static WebDriver getDriver() {
         if (driver == null) {
             String browserType = loadProperties().getProperty("browserType");
@@ -65,6 +68,8 @@ public class DriverProvider {
         }
         return driver;
     }
+
+ */
 
     public static Properties loadProperties() {
         String current = System.getProperty("user.dir");

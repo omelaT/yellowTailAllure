@@ -6,9 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Automarion_with_Alluret" />
         <module name="NewUpdatetPageFactory" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8" />
+    <bytecodeTargetLevel target="8">
+      <module name="NewUpdatetPageFactory" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

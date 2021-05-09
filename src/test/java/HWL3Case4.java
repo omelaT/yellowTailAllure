@@ -1,3 +1,7 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pages.DriverProvider;
@@ -5,12 +9,15 @@ import pages.MainPage;
 import pages.WelcomePage;
 
 public class HWL3Case4 extends JunitRunner {
-
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("do preconditions to get to the main mage")
 
     @Test
+
+    @Step("navigate as a castomer to menu page")
     public void menuButtonLogic() throws InterruptedException {
         WelcomePage welcomePage = new WelcomePage();
-        DriverProvider.getDriver().get("https://www.yellowtailwine.com");
+        DriverProvider.INSTANCE.getDriver().get("https://www.yellowtailwine.com");
         welcomePage.checkboxClickEuropeSelectWelcomeBttonClick();
 
         // check that we ere on the main page
@@ -40,7 +47,9 @@ public class HWL3Case4 extends JunitRunner {
         //  4. Click on [yellow tail]
         mainPage.clickOnLogoOnMainPage();
         //  5. Verify that Menu button is visible
+        makeScreenshot();
         mainPage.menuButtonClickOnMainPage();
+
 
         System.out.println("test success");
 

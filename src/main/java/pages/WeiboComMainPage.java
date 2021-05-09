@@ -21,22 +21,22 @@ public class WeiboComMainPage extends AbstractPage {
 
     public  void getDescription(Set <String> oldWindowsSet) {
 
-        Set<String> newWindowsSet = DriverProvider.getDriver().getWindowHandles();
+        Set<String> newWindowsSet = DriverProvider.INSTANCE.getDriver().getWindowHandles();
         // получаем дескриптор нового окна
 
         newWindowsSet.removeAll(oldWindowsSet);
         String newWindowHandle = newWindowsSet.iterator().next();
-        DriverProvider.getDriver().switchTo().window(newWindowHandle);
-        System.out.println("New window title: " + DriverProvider.getDriver().getTitle());
+        DriverProvider.INSTANCE.getDriver().switchTo().window(newWindowHandle);
+        System.out.println("New window title: " + DriverProvider.INSTANCE.getDriver().getTitle());
     }
     //wait
     public void waitForWeiboPage(){
-        ( new WebDriverWait(DriverProvider.getDriver(), Duration.ofSeconds(30))).
+        ( new WebDriverWait(DriverProvider.INSTANCE.getDriver(), Duration.ofSeconds(30))).
                 until(ExpectedConditions.urlContains("weibo"));
 
     }
     public void waitForWeiboPageLoad(){
-         new WebDriverWait(DriverProvider.getDriver(), Duration.ofSeconds(30));
+         new WebDriverWait(DriverProvider.INSTANCE.getDriver(), Duration.ofSeconds(30));
 
     }
 

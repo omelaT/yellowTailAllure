@@ -1,3 +1,7 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -8,12 +12,15 @@ import pages.MainPage;
 import pages.WelcomePage;
 
 public class HWL4Case11 extends JunitRunner {
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("do preconditions to get to the main mage")
 
 
 
     @Test
+    @Step("several wine selected")
     public void selectSeveralWines() throws InterruptedException {
-        DriverProvider.getDriver().get("https://www.yellowtailwine.com");
+        DriverProvider.INSTANCE.getDriver().get("https://www.yellowtailwine.com");
         //precondition
         //check checkbox
         //precondition
@@ -42,13 +49,14 @@ public class HWL4Case11 extends JunitRunner {
 
         //4. Verify that “Multiple” word is displayed in “Type” dropdown
         //aria-label="Type - select to access the drop down menu of wine types"
-        WebElement categoryMultiple = DriverProvider.getDriver().findElement(By.cssSelector("[aria-label*=\"Type \"]"));
+        WebElement categoryMultiple = DriverProvider.INSTANCE.getDriver().findElement(By.cssSelector("[aria-label*=\"Type \"]"));
 
         Assertions.assertTrue(coctailPage.multipleIsDisplayedOnCoctailPage().contains("Multiple"));
 
         //5. Verify that 18 recipes are displayedint
-        int count = DriverProvider.getDriver().findElements(By.cssSelector("[class=\"tile recipe-tile\"]")).size();
+        int count = DriverProvider.INSTANCE.getDriver().findElements(By.cssSelector("[class=\"tile recipe-tile\"]")).size();
        System.out.println(count);
+        makeScreenshot();
         Assertions.assertEquals(18,count);
        // Thread.sleep(2000);
      //  int  coctailNumber   = 18;

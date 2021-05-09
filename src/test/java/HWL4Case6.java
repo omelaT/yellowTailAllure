@@ -1,3 +1,7 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pages.DriverProvider;
@@ -5,10 +9,13 @@ import pages.MainPage;
 import pages.WelcomePage;
 
 public class HWL4Case6 extends JunitRunner{
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("do preconditions to get to the main mage")
 
     @Test
+    @Step("check changed language")
     public void requirenmentElementsDisplayedOnMainPage() throws InterruptedException {
-        DriverProvider.getDriver().get("https://www.yellowtailwine.com");
+        DriverProvider.INSTANCE.getDriver().get("https://www.yellowtailwine.com");
         //precondition
         WelcomePage welcomePage = new WelcomePage();
 
@@ -29,6 +36,7 @@ public class HWL4Case6 extends JunitRunner{
         //Select China
         mainPage.selectChinaAndClick();
         System.out.println("success click");
+        makeScreenshot();
         // Verify that language is changed
         //- find your wine button
        // WebElement findYourWineButton = driver.findElement(By.cssSelector("[class=\"sgg-comp-button-inner\"]"));

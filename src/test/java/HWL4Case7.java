@@ -1,3 +1,7 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -12,9 +16,12 @@ import java.util.Set;
 
 
 public class HWL4Case7 extends JunitRunner {
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("do preconditions to get to the main mage")
 
 
     @Test
+    @Step(" moove to weibo page")
     public void mainPageGlobalNavLogic() throws InterruptedException {
 
         //precondition
@@ -48,9 +55,11 @@ public class HWL4Case7 extends JunitRunner {
 
         //wait
        // mainPage.waitForIconAfterChinaSelected();
-Thread.sleep(10000);
+
+//Thread.sleep(10000);
+
         //click
-        Set<String> oldWindowsSet = DriverProvider.getDriver().getWindowHandles();
+        Set<String> oldWindowsSet = DriverProvider.INSTANCE.getDriver().getWindowHandles();
         mainPage.clickOnRedirectIcon();
         System.out.println("success click 2");
         //wait
@@ -59,9 +68,10 @@ Thread.sleep(10000);
         WeiboComMainPage weiboComMainPage = new WeiboComMainPage();
 
         weiboComMainPage.getDescription(oldWindowsSet);
+        makeScreenshot();
         //Verify that “https://www.weibo.com/yellowtailChina” site is open in new tab
-        Assertions.assertTrue(DriverProvider.getDriver().getCurrentUrl().contains("weibo"));
-        DriverProvider.getDriver().close();
+        Assertions.assertTrue(DriverProvider.INSTANCE.getDriver().getCurrentUrl().contains("weibo"));
+        DriverProvider.INSTANCE.getDriver().close();
 
     }
 }

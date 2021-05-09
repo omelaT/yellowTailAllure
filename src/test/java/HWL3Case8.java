@@ -1,3 +1,7 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pages.DriverProvider;
@@ -7,11 +11,14 @@ import pages.WhereToBuyPage;
 
 
 public class HWL3Case8  extends  JunitRunner{
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("do preconditions to get to the main mage")
 
 
     @Test
+    @Step("search on where to by page")
     public void whereToBy() throws InterruptedException {
-        DriverProvider.getDriver().get("https://www.yellowtailwine.com");
+        DriverProvider.INSTANCE.getDriver().get("https://www.yellowtailwine.com");
 
         //precondition
         WelcomePage welcomePage = new WelcomePage();
@@ -35,7 +42,7 @@ public class HWL3Case8  extends  JunitRunner{
         whereToBuyPage.clickOnSearchButtonOnWhereToBuyPage();
 
         //  4. Verify that the results of search are displayed
-
+        makeScreenshot();
         Assertions.assertTrue(whereToBuyPage.searchResultOnWhereToBuyPage());
 
     }

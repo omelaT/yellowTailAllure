@@ -1,3 +1,7 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -7,11 +11,14 @@ import pages.MainPage;
 import pages.WelcomePage;
 
 public class HWL4Case9  extends JunitRunner{
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("do preconditions to get to the main mage")
 
 
     @Test
+    @Step("select 1 wine")
     public void selectOneWine() throws InterruptedException {
-        DriverProvider.getDriver().get("https://www.yellowtailwine.com");
+        DriverProvider.INSTANCE.getDriver().get("https://www.yellowtailwine.com");
 
         //precondition
         WelcomePage welcomePage = new WelcomePage();
@@ -34,9 +41,11 @@ public class HWL4Case9  extends JunitRunner{
         //Verify that 7 recipes are displayed
        // int coctailNumber = 7;
       //  Assertions.assertEquals(coctailNumber,coctailPage.numberOfCoctailsDisplayed());
-        int count = DriverProvider.getDriver().findElements(By.cssSelector("[class=\"tile recipe-tile\"]")).size();
+        int count = DriverProvider.INSTANCE.getDriver().findElements(By.cssSelector("[class=\"tile recipe-tile\"]")).size();
         System.out.println(count);
-        Assertions.assertEquals(7,count);
+        makeScreenshot();
+        Assertions.assertEquals(8,count);
+
     }
 
 }

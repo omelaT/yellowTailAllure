@@ -1,12 +1,19 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pages.*;
 
 public class HWL4Case10  extends  JunitRunner{
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("do preconditions to get to the main mage")
 
     @Test
+    @Step("coctails page")
     public void navigateToCocktailRecipePage() throws InterruptedException {
-        DriverProvider.getDriver().get("https://www.yellowtailwine.com");
+        DriverProvider.INSTANCE.getDriver().get("https://www.yellowtailwine.com");
         //precondition
         //precondition
         WelcomePage welcomePage = new WelcomePage();
@@ -25,6 +32,7 @@ public class HWL4Case10  extends  JunitRunner{
 
         coctailPage.scroleToRoseAndClickOnItOnCoctailPage();
         CoctailIngredientPage coctailIngredientPage = new CoctailIngredientPage();
+        makeScreenshot();
 
         coctailIngredientPage.ingridientSectionIsDisplayed();
 

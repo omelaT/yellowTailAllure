@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import pages.DriverProvider;
@@ -11,31 +12,32 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.Duration;
-
-public class JUnitRunner {
+@ExtendWith(TestResultLoggerExtension.class)
+public class JunitRunner {
 
 
         @BeforeEach
         public void before() {
 
             String basicUrl = "https://www.yellowtailwine.com";
-            DriverProvider.getDriver();
+            DriverProvider.INSTANCE.getDriver();
             //  System.setProperty( Constants.SYSTEM_PROPERTY_CHROME_DRIVER, Constants.PATH_TO_CHROME_DRIVER );
             //  driver = new ChromeDriver();
-            DriverProvider.getDriver().get(basicUrl);
-            DriverProvider.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+            DriverProvider.INSTANCE.getDriver().get(basicUrl);
+            DriverProvider.INSTANCE.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         }
 
         @AfterEach
         public void after() {
-            DriverProvider.getDriver().quit();
+            DriverProvider.INSTANCE.getDriver().quit();
     }
-   private void makeScreenshot() {
+   public void makeScreenshot() {
         Path target = Paths.get("results/temp.png");
-        File source = ((TakesScreenshot) DriverProvider.getDriver()).getScreenshotAs(OutputType.FILE);
+        File source = ((TakesScreenshot) DriverProvider.INSTANCE.getDriver()).getScreenshotAs(OutputType.FILE);
         try {
             Files.copy(source.toPath(),target, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
+            throw new RuntimeException("file was not copied");
         }}
 }
