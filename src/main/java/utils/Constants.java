@@ -8,4 +8,7 @@ public class Constants {
     //firefox
     public final static String PATH_TO_FIREFOX_DRIVER = "src/test/resourses/geckodriver";
     public final static String SYSTEM_PROPERTY_FIREFOX_DRIVER =  "webdriver.gecko.driver";
+
+ public final static String FILENAME_WITH_PROPERTIES = "default.properties";
+
 }
