@@ -17,26 +17,26 @@ import static utils.Constants.FILENAME_WITH_PROPERTIES;
 
 
 public class DriverProvider {
-  /*
-   driver  переделывем
-   public static final DriverProvider INSTANCE = new DriverProvider();
+    /*
+     driver  переделывем
+     public static final DriverProvider INSTANCE = new DriverProvider();
 
-    private ThreadLocal<WebDriver> DRIVER = new ThreadLocal<WebDriver>();
+      private ThreadLocal<WebDriver> DRIVER = new ThreadLocal<WebDriver>();
 
-    private DriverProvider() {
-    }
+      private DriverProvider() {
+      }
 
-    public WebDriver getDriver() {
-        if (DRIVER.get() == null) {
-            DRIVER.set(createDriverInstance());
-        }
-        return DRIVER.get();
-    }
+      public WebDriver getDriver() {
+          if (DRIVER.get() == null) {
+              DRIVER.set(createDriverInstance());
+          }
+          return DRIVER.get();
+      }
 
-    private WebDriver createDriverInstance() {
-        return createDriverInstance(BROWSER_TYPE.CHROME);
-    }
-     */
+      private WebDriver createDriverInstance() {
+          return createDriverInstance(BROWSER_TYPE.CHROME);
+      }
+       */
 /*
  /* выносим в фабрику
     public WebDriver createInstance(BROWSER_TYPE browserType) {
@@ -54,25 +54,19 @@ public class DriverProvider {
         return DRIVER.get();
     }
     */
-   //переделываем под фабрику
-  static  WebDriver driver;
+    //переделываем под фабрику
+    static WebDriver driver;
 
- //  private  static WebDriver createDriver() {
-//       System.setProperty(Constants.SYSTEM_PROPERTY_CHROME_DRIVER, Constants.PATH_TO_CHROME_DRIVER);
-       //return new ChromeDriver();}
-       //firefox
-    //  System.setProperty( Constants.SYSTEM_PROPERTY_FIREFOX_DRIVER, Constants.PATH_TO_FIREFOX_DRIVER );
-   //   return  new FirefoxDriver(); }
 
-   public  static WebDriver getDriver(){
-       if (driver==null){
-String browserType  = loadProperties().getProperty("browserType");
-           driver = DriverFactory.createDriver(BrowserType.valueOf(browserType));
-       }
-       return driver;
-   }
+    public static WebDriver getDriver() {
+        if (driver == null) {
+            String browserType = loadProperties().getProperty("browserType");
+            driver = DriverFactory.createDriver(BrowserType.valueOf(browserType));
+        }
+        return driver;
+    }
 
-    public static Properties loadProperties(){
+    public static Properties loadProperties() {
         String current = System.getProperty("user.dir");
         String separator = System.getProperty("file.separator");
         String resourcesFolder = "src" + separator + "main" + separator + "resources";
