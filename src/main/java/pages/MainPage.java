@@ -119,12 +119,10 @@ public class MainPage extends  AbstractPage {
     }
 
     public void clickOnLogoOnMainPage(){
-        logoOnMainPage.click();
-    }
+        logoOnMainPage.click(); }
 
     public void menuButtonClickOnMainPage(){
         menuButtonOnMainPage.click();
-
     }
 
     public void clickOnYellowTailOnMainPage(){
@@ -152,9 +150,10 @@ public class MainPage extends  AbstractPage {
         return findYourWineButtonChangeLang.getText();
     }
 
-    public void clickOnRedirectIcon(){
+    public WeiboComMainPage clickOnRedirectIcon(){
         JavascriptExecutor js1 = (JavascriptExecutor) DriverProvider.INSTANCE.getDriver();
         js1.executeScript("document.querySelector('.fa.fa-weibo',':before').click();");
+        return new WeiboComMainPage();
     }
 
         public WhereToBuyPage whereToByMenuClick(){
