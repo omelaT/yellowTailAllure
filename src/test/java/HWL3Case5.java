@@ -9,13 +9,12 @@ import pages.MainPage;
 import pages.WelcomePage;
 
 
-public class HWL3Case5 extends JunitRunner{
+public class HWL3Case5 extends JunitRunner {
     @Severity(SeverityLevel.BLOCKER)
     @Description("do preconditions to get to the main mage")
 
 
     @Test
-    @Step("click on the Yellow tail")
     public void menuButtonLogic() throws InterruptedException {
         DriverProvider.INSTANCE.getDriver().get("https://www.yellowtailwine.com");
         WelcomePage welcomePage = new WelcomePage();
@@ -30,11 +29,11 @@ public class HWL3Case5 extends JunitRunner{
         mainPage.clickOnMenuButtonOnMainPage();
 
         //Click on [yellow tail]
-       mainPage.clickOnYellowTailOnMainPage();
+        mainPage.clickOnYellowTailOnMainPage();
         makeScreenshot();
 
         //Verify that Menu button is visible
-      Assertions.assertTrue(mainPage.menuButtonIsDisplayedOnMainPage());
+        Assertions.assertTrue(mainPage.menuButtonIsDisplayedOnMainPage());
 
         System.out.println("success");
 

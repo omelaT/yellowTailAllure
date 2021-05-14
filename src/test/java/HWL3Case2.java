@@ -8,19 +8,15 @@ import pages.DriverProvider;
 import pages.MainPage;
 import pages.WelcomePage;
 
-public class HWL3Case2  extends JunitRunner{
+public class HWL3Case2 extends JunitRunner {
     @Severity(SeverityLevel.BLOCKER)
     @Description("do preconditions to get to the main mage")
 
     @Test
-    @Step("navigate as a castomer")
     public void navigateAsCustomer() {
         WelcomePage welcomePage = new WelcomePage();
-
         welcomePage.checkboxClickEuropeSelectWelcomeBttonClick();
-
         MainPage mainPage = new MainPage();
-        makeScreenshot();
         Assertions.assertTrue(DriverProvider.INSTANCE.getDriver().getCurrentUrl().contains("https://www.yellowtailwine.com/"));
 
 

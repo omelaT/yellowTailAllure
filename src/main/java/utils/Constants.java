@@ -1,14 +1,14 @@
 package utils;
 
 public class Constants {
-   public final static String PATH_TO_CHROME_DRIVER = "src/test/resourses/chromedriver";
-    public final static String SYSTEM_PROPERTY_CHROME_DRIVER =  "webdriver.chrome.driver";
+    public final static String PATH_TO_CHROME_DRIVER = "src/test/resourses/chromedriver";
+    public final static String SYSTEM_PROPERTY_CHROME_DRIVER = "webdriver.chrome.driver";
     //basic url
-    public final static  String BASICURL = "https://www.yellowtailwine.com";
+    public final static String BASICURL = "https://www.yellowtailwine.com";
     //firefox
     public final static String PATH_TO_FIREFOX_DRIVER = "src/test/resourses/geckodriver";
-    public final static String SYSTEM_PROPERTY_FIREFOX_DRIVER =  "webdriver.gecko.driver";
+    public final static String SYSTEM_PROPERTY_FIREFOX_DRIVER = "webdriver.gecko.driver";
 
- public final static String FILENAME_WITH_PROPERTIES = "default.properties";
+    public final static String FILENAME_WITH_PROPERTIES = "default.properties";
 
 }

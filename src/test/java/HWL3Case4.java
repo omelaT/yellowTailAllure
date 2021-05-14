@@ -13,8 +13,6 @@ public class HWL3Case4 extends JunitRunner {
     @Description("do preconditions to get to the main mage")
 
     @Test
-
-    @Step("navigate as a castomer to menu page")
     public void menuButtonLogic() throws InterruptedException {
         WelcomePage welcomePage = new WelcomePage();
         DriverProvider.INSTANCE.getDriver().get("https://www.yellowtailwine.com");
@@ -30,7 +28,7 @@ public class HWL3Case4 extends JunitRunner {
         System.out.println("clickonmenubutton");
         Thread.sleep(2000);
 
-       //Verify that header with all needed links is appeared
+        //Verify that header with all needed links is appeared
         Assertions.assertTrue(mainPage.wineLinkDisplayedOnMainPage());
         System.out.println("link 1 exists");
         Assertions.assertTrue(mainPage.storesLinkDisplayedOnMainPage());

@@ -1,15 +1,15 @@
 package pages;
 
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import utils.Waiters;
 
+public class MainPage extends AbstractPage {
 
-public class MainPage extends  AbstractPage {
-
-    public MainPage () {
+    public MainPage() {
         super();
 
     }
@@ -17,11 +17,11 @@ public class MainPage extends  AbstractPage {
     @FindBy(css = ".large-mobile")
     private WebElement thisIsMainPage;
     @FindBy(css = ".fa.fa-bars")
-    private  WebElement menubuttonOnMainPageDisplayed;
-    @FindBy(css ="[class = \"content animation-screen -one\"] h2" )
+    private WebElement menubuttonOnMainPageDisplayed;
+    @FindBy(css = "[class = \"content animation-screen -one\"] h2")
     private WebElement titleOnMainPage;
-    @FindBy(css ="[class=\"content animation-screen -one\"] p" )
-    private WebElement  passionateText;
+    @FindBy(css = "[class=\"content animation-screen -one\"] p")
+    private WebElement passionateText;
     @FindBy(css = "[class=\"content animation-screen -one\"] p")
     private WebElement enjoyText;
     @FindBy(css = "[class=\"content animation-screen -one\"]> a")
@@ -32,29 +32,29 @@ public class MainPage extends  AbstractPage {
     private WebElement clickOnMenuButton;
     @FindBy(css = "[href*=\"wines\"]")
     private WebElement wineLink;
-    @FindBy(css ="[href*=\"stores\"]")
+    @FindBy(css = "[href*=\"stores\"]")
     private WebElement storesLink;
-    @FindBy(css ="[href*=\"cocktails\"]")
+    @FindBy(css = "[href*=\"cocktails\"]")
     private WebElement coctailsLink;
-    @FindBy(css ="[href*=\"our-story\"]")
+    @FindBy(css = "[href*=\"our-story\"]")
     private WebElement ourStoryLink;
-    @FindBy(css ="[href*=\"faqs\"]")
+    @FindBy(css = "[href*=\"faqs\"]")
     private WebElement faqsLink;
-    @FindBy(css ="[href*=\"contact\"]")
+    @FindBy(css = "[href*=\"contact\"]")
     private WebElement contactLink;
-    @FindBy(css ="[class=\"yt-logo\"] img[src*=\"logo-yellowtail-white.svg\"]" )
+    @FindBy(css = "[class=\"yt-logo\"] img[src*=\"logo-yellowtail-white.svg\"]")
     private WebElement logoOnMainPage;
-    @FindBy(css =".fa.fa-bars" )
+    @FindBy(css = ".fa.fa-bars")
     private WebElement menuButtonOnMainPage;
-    @FindBy(css ="[class=\"yt-logo\"] img[src*=\"logo-yellowtail-white.svg\"]" )
+    @FindBy(css = "[class=\"yt-logo\"] img[src*=\"logo-yellowtail-white.svg\"]")
     private WebElement clickOnYellowTail;
     @FindBy(css = ".fa.fa-globe.fa-lg")
     private WebElement globeIcon;
     @FindBy(css = "[data-key=\"CN\"]")
     private WebElement selectChina;
-    @FindBy(css ="[class=\"sgg-comp-button-inner\"]" )
+    @FindBy(css = "[class=\"sgg-comp-button-inner\"]")
     private WebElement findYourWineButtonChangeLang;
-    @FindBy(css ="[href*=\"stores\"]" )
+    @FindBy(css = "[href*=\"stores\"]")
     private WebElement whereToBueMenu;
     @FindBy(css = "[href*=\"cocktails\"]")
     private WebElement coctails;
@@ -62,161 +62,129 @@ public class MainPage extends  AbstractPage {
     @FindBy(css = ".fa.fa-weibo")
     private WebElement weibo;
 
-
-    public boolean verifyThisIsMainPage(){
+@Step("this is main page")
+    public boolean verifyThisIsMainPage() {
         return thisIsMainPage.isDisplayed();
     }
-
-    public boolean menuButtonIsDisplayedOnMainPage(){
+@Step("menu button displayed")
+    public boolean menuButtonIsDisplayedOnMainPage() {
         return menubuttonOnMainPageDisplayed.isDisplayed();
     }
-
-    public boolean titleOnMainPageIsDisplayed(){
+@Step("title on main page")
+    public boolean titleOnMainPageIsDisplayed() {
         return titleOnMainPage.isDisplayed();
     }
-
-    public boolean passionateTextIsDisplayedOnMainPage(){
-     return   passionateText.isDisplayed();
+@Step("passionate text displayed")
+    public boolean passionateTextIsDisplayedOnMainPage() {
+        return passionateText.isDisplayed();
     }
-
-    public boolean enjoyTextIsDisplayedOnMainPage(){
+@Step("enjoi text displayed")
+    public boolean enjoyTextIsDisplayedOnMainPage() {
         return enjoyText.isDisplayed();
     }
-
-    public boolean findYourWineButtonIsDisplayedOnMainPage(){
-      return findYourWineButton.isDisplayed();
-    }
-
-    public boolean footerOnOnMainPage(){
+@Step("find your vine button displayed")
+    public boolean findYourWineButtonIsDisplayedOnMainPage() {
         return findYourWineButton.isDisplayed();
     }
-
-    public void clickOnMenuButtonOnMainPage(){
+@Step("check footer")
+    public boolean footerOnOnMainPage() {
+        return findYourWineButton.isDisplayed();
+    }
+@Step("click on Menu button")
+    public void clickOnMenuButtonOnMainPage() {
         clickOnMenuButton.click();
     }
-
-    public boolean wineLinkDisplayedOnMainPage(){
+@Step("Wine link on main page")
+    public boolean wineLinkDisplayedOnMainPage() {
         return wineLink.isDisplayed();
     }
-    public boolean storesLinkDisplayedOnMainPage(){
+@Step("stores link on main page")
+    public boolean storesLinkDisplayedOnMainPage() {
         return storesLink.isDisplayed();
     }
-
-    public boolean coctailsLinkDisplayedOnMainPage(){
+@Step("coctails link on main page")
+    public boolean coctailsLinkDisplayedOnMainPage() {
         return coctailsLink.isDisplayed();
     }
-
-    public boolean ourStoryLinkDisplayedOnMainPage(){
+@Step("our story link on main page")
+    public boolean ourStoryLinkDisplayedOnMainPage() {
         return ourStoryLink.isDisplayed();
     }
-
-    public boolean faqsLinkDisplayedOnMainPage(){
+@Step("faqs link on main page")
+    public boolean faqsLinkDisplayedOnMainPage() {
         return faqsLink.isDisplayed();
     }
-
-    public boolean contactLinkDisplayedOnMainPage(){
+@Step("contacts link on main page")
+    public boolean contactLinkDisplayedOnMainPage() {
         return contactLink.isDisplayed();
     }
-
-    public void clickOnLogoOnMainPage(){
-        logoOnMainPage.click(); }
-
-    public void menuButtonClickOnMainPage(){
+@Step("click on logo on main page")
+    public void clickOnLogoOnMainPage() {
+        logoOnMainPage.click();
+    }
+@Step("click on menu button")
+    public void menuButtonClickOnMainPage() {
         menuButtonOnMainPage.click();
     }
-
-    public void clickOnYellowTailOnMainPage(){
+@Step("click on Yellow TAil")
+    public void clickOnYellowTailOnMainPage() {
         clickOnYellowTail.click();
     }
-
-    //////
-
-    public boolean globeIconIsVisible(){
+@Step("globe icon is visible")
+    public boolean globeIconIsVisible() {
         return globeIcon.isDisplayed();
     }
-
-    public void clickOnTheGlobeIcon(){
-        JavascriptExecutor js = (JavascriptExecutor) DriverProvider.INSTANCE.getDriver() ;
+@Step("click on The globe")
+    public void clickOnTheGlobeIcon() {
+        JavascriptExecutor js = (JavascriptExecutor) DriverProvider.INSTANCE.getDriver();
         js.executeScript("document.querySelector('.fa.fa-globe.fa-lg',':before').click();");
     }
-    //Select China
 
+@Step(" Select China")
     public WeiboComMainPage selectChinaAndClick() {
         selectChina.click();
         return new WeiboComMainPage();
     }
-
-    public String getChangedLanguageOnFindYourWineButton(){
+@Step("language is changed")
+    public String getChangedLanguageOnFindYourWineButton() {
         return findYourWineButtonChangeLang.getText();
     }
-
-    public WeiboComMainPage clickOnRedirectIcon(){
+@Step("click on redirect  Icon")
+    public WeiboComMainPage clickOnRedirectIcon() {
         JavascriptExecutor js1 = (JavascriptExecutor) DriverProvider.INSTANCE.getDriver();
         js1.executeScript("document.querySelector('.fa.fa-weibo',':before').click();");
         return new WeiboComMainPage();
     }
-
-        public WhereToBuyPage whereToByMenuClick(){
-            whereToBueMenu.click();
-            return new WhereToBuyPage();
-        }
-
-    public CoctailPage clickOnCoctailPagelinkOnMainPage(){
+@Step("click on whre to by link")
+    public WhereToBuyPage whereToByMenuClick() {
+        whereToBueMenu.click();
+        return new WhereToBuyPage();
+    }
+@Step("click on  coctail link")
+    public CoctailPage clickOnCoctailPagelinkOnMainPage() {
         coctails.click();
         return new CoctailPage();
-        }
-
-    //ожидания
-
-    public void waitForGlobeIcon() {
-       Waiters.waitingForTheElementToBeVisible(globeIcon);
-      //  Waiters.waitingForTheElementToBeVisible(weibo);
-     //   Waiters.waitingForTheElementToBeVisible(logoOnMainPage);
-     //   Waiters.waitingForTheElementToBeVisible(selectChina);
     }
-    public void waitForIconAfterChinaSelected(){
+//waiters
+@Step("wait ForGlobeIcon")
+    public void waitForGlobeIcon() {
+        Waiters.waitingForTheElementToBeVisible(globeIcon);
+    }
+
+    public void waitForIconAfterChinaSelected() {
         Waiters.waitingForTheElementToBeVisible(weibo);
     }
-    public void waitForMenuButton(){
+
+    public void waitForMenuButton() {
         Waiters.waitingForTheElementToBeVisible(logoOnMainPage);
     }
-    public void waitForElementChina(){
+
+    public void waitForElementChina() {
         Waiters.waitingForTheElementToBeVisible(selectChina);
     }
-    public void waitTime(){
+
+    public void waitTime() {
         Waiters.waitingForTheElementToBeVisible(selectChina);
     }
-
-
-
-/*
-   public void waitForGlobeIcon(){
-       new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOf(globeIcon));
-    }
-
-    public void waitForIconAfterChinaSelected(){
-        new WebDriverWait(driver, Duration.ofSeconds(20)).
-                until(ExpectedConditions.visibilityOf(weibo));
-              //  until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".fa.fa-weibo")));
-    }
-   public void waitForMenuButton(){
-
-        new WebDriverWait(driver , Duration.ofSeconds(10)).
-                until(ExpectedConditions.visibilityOf(logoOnMainPage));
-              //  until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".fa.fa-bars")));
-    }
-    public void waitForElementChina(){
-        new WebDriverWait(driver , Duration.ofSeconds(10)).
-                until(ExpectedConditions.visibilityOf(selectChina));
-    }
-
-    public void waitForNewPage(){
-        new WebDriverWait(DriverProvider.getDriver() , Duration.ofSeconds(20));
-    }
-*/
-
-
-
-
 
 }

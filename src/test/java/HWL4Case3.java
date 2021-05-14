@@ -14,7 +14,6 @@ public class HWL4Case3 extends JunitRunner {
 
 
     @Test
-    @Step(" elements on main page")
     public void requirenmentElementsDisplayedOnMainPage() throws InterruptedException {
         WelcomePage welcomePage = new WelcomePage();
         DriverProvider.INSTANCE.getDriver().get("https://www.yellowtailwine.com");
@@ -24,20 +23,20 @@ public class HWL4Case3 extends JunitRunner {
         Assertions.assertTrue(DriverProvider.INSTANCE.getDriver().getCurrentUrl().contains("https://www.yellowtailwine.com/"));
 
         Assertions.assertTrue(mainPage.verifyThisIsMainPage());
-     //   System.out.println("mainPage");
+        //   System.out.println("mainPage");
         Assertions.assertTrue(mainPage.menuButtonIsDisplayedOnMainPage());
-     //   System.out.println("menuButton");
+        //   System.out.println("menuButton");
         Assertions.assertTrue(mainPage.titleOnMainPageIsDisplayed());
-     //   System.out.println("titleOnMainPage");
+        //   System.out.println("titleOnMainPage");
         Assertions.assertTrue(mainPage.passionateTextIsDisplayedOnMainPage());
-     //   System.out.println("passionateText");
+        //   System.out.println("passionateText");
         Assertions.assertTrue(mainPage.enjoyTextIsDisplayedOnMainPage());
-     //   System.out.println("enjoyText");
+        //   System.out.println("enjoyText");
         Assertions.assertTrue(mainPage.findYourWineButtonIsDisplayedOnMainPage());
-     //   System.out.println("findYourWineButton");
+        //   System.out.println("findYourWineButton");
         makeScreenshot();
         Assertions.assertTrue(mainPage.footerOnOnMainPage());
-     //   System.out.println("footer");
+        //   System.out.println("footer");
 
 
     }

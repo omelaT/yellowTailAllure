@@ -24,7 +24,7 @@ public class TestResultLoggerExtension implements TestWatcher, AfterAllCallback 
     private byte[] makeScreenshot() {
         return ((TakesScreenshot) DriverProvider.INSTANCE.getDriver()).getScreenshotAs(OutputType.BYTES);
     }
-  }
+}
 
 
 

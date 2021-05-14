@@ -9,12 +9,5 @@ public abstract class AbstractPage {
         PageFactory.initElements(DriverProvider.INSTANCE.getDriver(),this);
 
     }
-  //  public abstract void waitForLoadingElement();
-
-  /*  public WebElement waitingForTheElementToBeVisible(WebElement webElement){
-     return (  new WebDriverWait(driver, Duration.ofSeconds(20)).
-                until(ExpectedConditions.visibilityOf(webElement)));
-    }
-*/
 
 }

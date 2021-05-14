@@ -10,8 +10,6 @@
         <module name="NewUpdatetPageFactory" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8">
-      <module name="NewUpdatetPageFactory" target="8" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="8" />
   </component>
 </project>

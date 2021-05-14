@@ -10,13 +10,12 @@ import pages.WelcomePage;
 import pages.WhereToBuyPage;
 
 
-public class HWL3Case8  extends  JunitRunner{
+public class HWL3Case8 extends JunitRunner {
     @Severity(SeverityLevel.BLOCKER)
     @Description("do preconditions to get to the main mage")
 
 
     @Test
-    @Step("search on where to by page")
     public void whereToBy() throws InterruptedException {
         DriverProvider.INSTANCE.getDriver().get("https://www.yellowtailwine.com");
 
@@ -28,19 +27,14 @@ public class HWL3Case8  extends  JunitRunner{
         // Click on Menu button
         mainPage.clickOnMenuButtonOnMainPage();
 
-
         //where to by page
         mainPage.whereToByMenuClick();
         //   Thread.sleep(2000);
         WhereToBuyPage whereToBuyPage = new WhereToBuyPage();
         //  Enter valid data in “Your location” field
-
         whereToBuyPage.locationFieldOnWhereToBuyPage();
-
-
         //  3. Click on Search button
         whereToBuyPage.clickOnSearchButtonOnWhereToBuyPage();
-
         //  4. Verify that the results of search are displayed
         makeScreenshot();
         Assertions.assertTrue(whereToBuyPage.searchResultOnWhereToBuyPage());

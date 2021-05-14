@@ -11,10 +11,8 @@ public class HWL4Case10  extends  JunitRunner{
     @Description("do preconditions to get to the main mage")
 
     @Test
-    @Step("coctails page")
     public void navigateToCocktailRecipePage() throws InterruptedException {
         DriverProvider.INSTANCE.getDriver().get("https://www.yellowtailwine.com");
-        //precondition
         //precondition
         WelcomePage welcomePage = new WelcomePage();
         welcomePage.checkboxClickEuropeSelectWelcomeBttonClick();
@@ -22,9 +20,6 @@ public class HWL4Case10  extends  JunitRunner{
         Assertions.assertTrue(mainPage.verifyThisIsMainPage());
         // Click on Menu button
         mainPage.clickOnMenuButtonOnMainPage();
-
-
-        //////
 
         // Navigate to “Cocktails” page
         mainPage.clickOnCoctailPagelinkOnMainPage();

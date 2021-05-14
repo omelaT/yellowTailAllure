@@ -8,12 +8,11 @@ import pages.DriverProvider;
 import pages.MainPage;
 import pages.WelcomePage;
 
-public class HWL4Case6 extends JunitRunner{
+public class HWL4Case6 extends JunitRunner {
     @Severity(SeverityLevel.BLOCKER)
     @Description("do preconditions to get to the main mage")
 
     @Test
-    @Step("check changed language")
     public void requirenmentElementsDisplayedOnMainPage() throws InterruptedException {
         DriverProvider.INSTANCE.getDriver().get("https://www.yellowtailwine.com");
         //precondition
@@ -31,7 +30,7 @@ public class HWL4Case6 extends JunitRunner{
         //Click on Globe icon
         mainPage.clickOnTheGlobeIcon();
         System.out.println("click globe btn");
-//Thread.sleep(5000);
+
         mainPage.waitForElementChina();
         //Select China
         mainPage.selectChinaAndClick();
@@ -39,8 +38,7 @@ public class HWL4Case6 extends JunitRunner{
         makeScreenshot();
         // Verify that language is changed
         //- find your wine button
-       // WebElement findYourWineButton = driver.findElement(By.cssSelector("[class=\"sgg-comp-button-inner\"]"));
-        Assertions.assertTrue( mainPage.getChangedLanguageOnFindYourWineButton().contains("发现适合你的酒"));
+        Assertions.assertTrue(mainPage.getChangedLanguageOnFindYourWineButton().contains("发现适合你的酒"));
         System.out.println("success");
     }
 }

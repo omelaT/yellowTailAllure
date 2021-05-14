@@ -10,13 +10,12 @@ import pages.DriverProvider;
 import pages.MainPage;
 import pages.WelcomePage;
 
-public class HWL4Case9  extends JunitRunner{
+public class HWL4Case9 extends JunitRunner {
     @Severity(SeverityLevel.BLOCKER)
     @Description("do preconditions to get to the main mage")
 
 
     @Test
-    @Step("select 1 wine")
     public void selectOneWine() throws InterruptedException {
         DriverProvider.INSTANCE.getDriver().get("https://www.yellowtailwine.com");
 
@@ -32,19 +31,17 @@ public class HWL4Case9  extends JunitRunner{
         // Navigate to “Cocktails” page
         mainPage.clickOnCoctailPagelinkOnMainPage();
 
- CoctailPage coctailPage = new CoctailPage();
+        CoctailPage coctailPage = new CoctailPage();
 
         coctailPage.clickOnToggleRedOnCoctailPage();
         //close dropdown
         coctailPage.closeDropdownOnCoctailPage();
 
         //Verify that 7 recipes are displayed
-       // int coctailNumber = 7;
-      //  Assertions.assertEquals(coctailNumber,coctailPage.numberOfCoctailsDisplayed());
         int count = DriverProvider.INSTANCE.getDriver().findElements(By.cssSelector("[class=\"tile recipe-tile\"]")).size();
         System.out.println(count);
         makeScreenshot();
-        Assertions.assertEquals(8,count);
+        Assertions.assertEquals(7, count);
 
     }
 
